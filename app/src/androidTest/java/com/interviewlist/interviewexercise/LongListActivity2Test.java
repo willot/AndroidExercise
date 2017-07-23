@@ -49,8 +49,23 @@ public class LongListActivityTest {
     }
 
     @Test
-    public void testRowLabelValue() {
-//        onView(withId(R.id.selection_row_value)).check());
+    public void testIfListViewIsPresent(){
+        onView(withId(R.id.list)).check(matches(isDisplayed()));
     }
 
+//    @Test
+//    public void testTryToGetFirstElement(){
+//        onData(anything()).inAdapterView(withId(R.id.list)).atPosition(0).onChildView(withId(R.id.rowContentTextView)).check(matches(withText(FIRST_TASK)));
+//    }
+
+    @Test
+    public void testSecondButtonIsCheckedandThenUncheckedAfterClick(){
+        DataInteraction dataInteraction = onData(hasEntry(equalTo(LongListActivity.ROW_TEXT), is("task: sleep")));
+        dataInteraction.onChildView(withId(R.id.rowToggleButton)).check(matches(isChecked())).perform(click());
+
+    }
+
+    @Test
+    public void testThatActivityNameAppearNextToLabelOnlyWhenRowContentTextViewIsClicked(){
+    }
 }
